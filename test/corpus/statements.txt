@@ -1594,3 +1594,102 @@ def more_generic[T, *Ts, **P]():
                               (identifier)))))))))))))
       (return_statement
         (identifier)))))
+
+================================================================================
+Type Parameter Defaults
+================================================================================
+
+class Box[T = int]:
+    pass
+
+class Pair[K: Hashable = str, V: (int, str) = int]:
+    pass
+
+def call[*Ts = *Defaults, **P = [int, str]]():
+    pass
+
+type Alias[T, U = list[T]] = dict[T, U]
+
+--------------------------------------------------------------------------------
+
+(module
+  (class_definition
+    name: (identifier)
+    type_parameters: (type_parameter
+      (type
+        (identifier))
+      (default_type
+        (type
+          (identifier))))
+    body: (block
+      (pass_statement)))
+  (class_definition
+    name: (identifier)
+    type_parameters: (type_parameter
+      (type
+        (constrained_type
+          (type
+            (identifier))
+          (type
+            (identifier))))
+      (default_type
+        (type
+          (identifier)))
+      (type
+        (constrained_type
+          (type
+            (identifier))
+          (type
+            (tuple
+              (identifier)
+              (identifier)))))
+      (default_type
+        (type
+          (identifier))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    type_parameters: (type_parameter
+      (type
+        (splat_type
+          (identifier)))
+      (default_type
+        (type
+          (splat_type
+            (identifier))))
+      (type
+        (splat_type
+          (identifier)))
+      (default_type
+        (type
+          (list
+            (identifier)
+            (identifier)))))
+    parameters: (parameters)
+    body: (block
+      (pass_statement)))
+  (type_alias_statement
+    left: (type
+      (generic_type
+        (identifier)
+        (type_parameter
+          (type
+            (identifier))
+          (type
+            (identifier))
+          (default_type
+            (type
+              (generic_type
+                (identifier)
+                (type_parameter
+                  (type
+                    (identifier)))))))))
+    right: (type
+      (generic_type
+        (identifier)
+        (type_parameter
+          (type
+            (identifier))
+          (type
+            (identifier)))))))

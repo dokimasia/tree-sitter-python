@@ -481,9 +481,14 @@ module.exports = grammar({
     ),
     type_parameter: $ => seq(
       '[',
-      commaSep1($.type),
+      commaSep1(seq($.type, optional($.default_type))),
       optional(','),
       ']',
+    ),
+
+    default_type: $ => seq(
+      '=',
+      $.type,
     ),
 
     parenthesized_list_splat: $ => prec(PREC.parenthesized_list_splat, seq(
