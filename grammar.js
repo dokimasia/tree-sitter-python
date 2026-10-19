@@ -576,7 +576,7 @@ module.exports = grammar({
       $.true,
       $.false,
       $.none,
-      seq(optional('-'), choice($.integer, $.float)),
+      seq(optional(choice('-', '+')), choice($.integer, $.float)),
       $.complex_pattern,
       $.dotted_name,
       '_',
@@ -634,7 +634,7 @@ module.exports = grammar({
     ),
 
     complex_pattern: $ => prec(1, seq(
-      optional('-'),
+      optional(choice('-', '+')),
       choice($.integer, $.float),
       choice('+', '-'),
       choice($.integer, $.float),

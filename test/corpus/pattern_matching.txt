@@ -1491,6 +1491,56 @@ match x:
           (pass_statement))))))
 
 ================================================================================
+Literals with unary plus
+================================================================================
+
+match x:
+    case +3 | -3:
+        pass
+    case +1.0:
+        pass
+    case +3 + 5j:
+        pass
+    case +3. - 5j as b:
+        pass
+
+--------------------------------------------------------------------------------
+
+(module
+  (match_statement
+    (identifier)
+    (block
+      (case_clause
+        (case_pattern
+          (union_pattern
+            (integer)
+            (integer)))
+        (block
+          (pass_statement)))
+      (case_clause
+        (case_pattern
+          (float))
+        (block
+          (pass_statement)))
+      (case_clause
+        (case_pattern
+          (complex_pattern
+            (integer)
+            (integer)))
+        (block
+          (pass_statement)))
+      (case_clause
+        (case_pattern
+          (as_pattern
+            (case_pattern
+              (complex_pattern
+                (float)
+                (integer)))
+            (identifier)))
+        (block
+          (pass_statement))))))
+
+================================================================================
 Maybe sequence pattern right hand side precedence validation
 ================================================================================
 
