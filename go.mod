@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-python
+module github.com/dokimasia/tree-sitter-python
 
 go 1.22
 
